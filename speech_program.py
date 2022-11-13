@@ -21,6 +21,13 @@ entry_text_user = StringVar()
 text_label = Label(root, font=("Roboto 14"), text="Your message:", bg="#5800FF", fg="#fff")
 text_label.place(x=20, y=10)
 
+
+var = DoubleVar()
+
+w = Scale(root, from_=-100, to=100,variable = var)
+w.set(0)
+w.pack(side=RIGHT)
+
 text_entry = Entry(root, font=("Roboto 14"), textvariable=entry_text_user)
 text_entry.place(x=180, y=10)
 
@@ -30,11 +37,22 @@ action_button.place(x = 450, y = 5)
 combo = ttk.Combobox(state="readonly", values=list(voices_list.keys()), width=40)
 combo.place(x=20, y=50)
 
+
+
+
+
+
+
+
 def speech():
     user_text = entry_text_user.get()
     language = combo.get()
-
+    
+    
     if user_text and language:
+        newVoiceRate = int(var.get())
+        engine.setProperty('rate',newVoiceRate+150)
+        print(newVoiceRate)
         engine.setProperty('voice', voices_list[language])
 
         engine.say(user_text)
