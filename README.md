@@ -34,7 +34,7 @@ I made a program in Python, using Tkinter as user interface that allows to repro
 
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Speech%20program`
+`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Speech%20Program`
 
 ## Video
 
