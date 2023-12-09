@@ -20,21 +20,9 @@ I made a program in Python, using Tkinter as user interface that allows to repro
 1. Tkinter
 2. pyttsx3
 
-## Galery
-
-![Speech-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/speechpython-0.jpg)
-
-![Speech-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/speechpython-1.jpg)
-
-![Speech-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/speechpython-2.jpg)
-
-![Speech-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/speechpython-3.jpg)
-
-![Speech-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/speechpython-4.jpg)
-
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Speech%20Program`
+[`https://www.diegolibonati.com.ar/#/project/90`](https://www.diegolibonati.com.ar/#/project/90)
 
 ## Video
 
