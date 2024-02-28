@@ -5,7 +5,7 @@
 1. Clone the repository
 2. Join to the correct path of the clone
 3. Install requirements.txt
-4. Use `python speech_program.py` to execute program
+4. Use `python ./src/app.py` to execute program
 
 ## Description
 
@@ -64,7 +64,7 @@ combo = ttk.Combobox(state="readonly", values=list(voices_list.keys()), width=40
 This function will be in charge of reproducing the text we entered with the voice we selected from the combo. We get what the user entered and the language selected by the user to reproduce the voice. In case of not choosing a text will be skipped. Then it will execute the voice with what it has to say, based on what the user wrote:
 
 ```
-def speech():
+def speech() -> None:
     user_text = entry_text_user.get()
     language = combo.get()
 

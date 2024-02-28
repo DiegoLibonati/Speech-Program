@@ -1,6 +1,9 @@
+import pyttsx3
+
 from tkinter import *
 from tkinter import ttk
-import pyttsx3
+
+from utils import utils
 
 root = Tk()
 
@@ -9,12 +12,8 @@ root.geometry("600x100")
 root.resizable(False, False)
 root.config(bg="#5800FF")
 
-voices_list = {}
 engine = pyttsx3.init()
-voices = engine.getProperty('voices')
-
-for voice in voices:
-    voices_list[voice.name] = voice.id
+voices_list = utils.get_voices(engine)
 
 entry_text_user = StringVar()
 
@@ -30,7 +29,7 @@ action_button.place(x = 450, y = 5)
 combo = ttk.Combobox(state="readonly", values=list(voices_list.keys()), width=40)
 combo.place(x=20, y=50)
 
-def speech():
+def speech() -> None:
     user_text = entry_text_user.get()
     language = combo.get()
 
@@ -42,7 +41,5 @@ def speech():
         engine.runAndWait()
     else:
         print("Please select a language and enter a text")
-
-        
 
 root.mainloop()
