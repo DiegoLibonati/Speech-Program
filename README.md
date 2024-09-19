@@ -1,4 +1,4 @@
-# Speech-Program
+# Speech Program
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ I made a program in Python, using Tkinter as user interface that allows to repro
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/90`](https://www.diegolibonati.com.ar/#/project/90)
+[`https://www.diegolibonati.com.ar/#/project/Speech-Program`](https://www.diegolibonati.com.ar/#/project/Speech-Program)
 
 ## Video
 
