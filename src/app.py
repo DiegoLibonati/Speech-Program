@@ -1,45 +1,22 @@
-import pyttsx3
+from tkinter import Tk
 
-from tkinter import *
-from tkinter import ttk
+from src.models.Engine import Engine
+from src.models.InterfaceApp import InterfaceApp
 
-from utils import utils
 
-root = Tk()
+def main():
+    root = Tk()
+    engine = Engine()
 
-root.title("Speech APP")
-root.geometry("600x100")
-root.resizable(False, False)
-root.config(bg="#5800FF")
+    app = InterfaceApp(root=root, engine=engine)
 
-engine = pyttsx3.init()
-voices_list = utils.get_voices(engine)
+    root.mainloop()
 
-entry_text_user = StringVar()
+    print(f"App: {app}")
 
-text_label = Label(root, font=("Roboto 14"), text="Your message:", bg="#5800FF", fg="#fff")
-text_label.place(x=20, y=10)
 
-text_entry = Entry(root, font=("Roboto 14"), textvariable=entry_text_user)
-text_entry.place(x=180, y=10)
+if __name__ == "__main__":
+    main()
 
-action_button = Button(root, font=("Roboto 12"), text="Listen", command=lambda:speech(),bg="#5800FF", fg="#fff")
-action_button.place(x = 450, y = 5)
 
-combo = ttk.Combobox(state="readonly", values=list(voices_list.keys()), width=40)
-combo.place(x=20, y=50)
 
-def speech() -> None:
-    user_text = entry_text_user.get()
-    language = combo.get()
-
-    if user_text and language:
-        engine.setProperty('voice', voices_list[language])
-
-        engine.say(user_text)
-
-        engine.runAndWait()
-    else:
-        print("Please select a language and enter a text")
-
-root.mainloop()
