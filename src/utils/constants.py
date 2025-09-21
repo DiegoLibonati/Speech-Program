@@ -6,4 +6,6 @@ PRIMARY = "#5800FF"
 
 TEXT_YOUR_MESSAGE = "Your message:"
 
-ERROR_NOT_TEXT_OR_LANGUAGE = "You must enter a text and a language to be able to reproduce."
+ERROR_NOT_TEXT_OR_LANGUAGE = (
+    "You must enter a text and a language to be able to reproduce."
+)

@@ -16,6 +16,11 @@ The main goal is to explore and demonstrate best practices, patterns, and techno
 6. Execute: `pip install -r requirements.test.txt`
 7. Use `python -m src.app` to execute program
 
+### Pre-Commit for Development
+
+1. Once you're inside the virtual environment, let's install the hooks specified in the pre-commit. Execute: `pre-commit install`
+2. Now every time you try to commit, the pre-commit lint will run. If you want to do it manually, you can run the command: `pre-commit run --all-files`
+
 ## Description
 
 I made a program in Python, using Tkinter as user interface that allows to reproduce a text entered by the user in voice. The user will enter by the input of this program any message, then he will have to choose a voice that reproduces what he wrote, by default it only brings 2 voices, one in Spanish and another in English. Once this is done the user will touch the Listen button to play the message and listen to it.
@@ -67,7 +72,7 @@ You can generate a standalone executable (`.exe` on Windows, or binary on Linux/
 1. Join to the correct path of the clone
 2. Activate your virtual environment: `venv\Scripts\activate`
 3. Install build dependencies: `pip install -r requirements.build.txt`
-4. Create the executable: `pyinstaller --onefile --windowed src/app.py` 
+4. Create the executable: `pyinstaller --onefile --windowed src/app.py`
 
 Alternatively, you can run the helper script: `build.bat`
 
@@ -76,7 +81,7 @@ Alternatively, you can run the helper script: `build.bat`
 1. Join to the correct path of the clone
 2. Activate your virtual environment: `source venv/bin/activate`
 3. Install build dependencies: `pip install -r requirements.build.txt`
-4. Create the executable: `pyinstaller --onefile --windowed src/app.py` 
+4. Create the executable: `pyinstaller --onefile --windowed src/app.py`
 
 Alternatively, you can run the helper script: `./build.sh`
 

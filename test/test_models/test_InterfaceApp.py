@@ -5,7 +5,9 @@ import pyttsx3
 from src.models.InterfaceApp import InterfaceApp
 from src.utils.constants import PRIMARY
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 CUSTOM_BG = "" or PRIMARY
 
