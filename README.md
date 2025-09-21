@@ -1,5 +1,11 @@
 # Speech Program
 
+## Educational Purpose
+
+This project was created primarily for **educational and learning purposes**.  
+While it is well-structured and could technically be used in production, it is **not intended for commercialization**.  
+The main goal is to explore and demonstrate best practices, patterns, and technologies in software development.
+
 ## Getting Started
 
 1. Clone the repository
@@ -32,6 +38,12 @@ pyttsx3==2.90
 pytest
 ```
 
+#### Requirements.build.txt
+
+```
+pyinstaller==6.16.0
+```
+
 ## Portfolio Link
 
 [`https://www.diegolibonati.com.ar/#/project/Speech-Program`](https://www.diegolibonati.com.ar/#/project/Speech-Program)
@@ -45,3 +57,27 @@ https://user-images.githubusercontent.com/99032604/198900310-d3260a5c-7158-4a7f-
 1. Join to the correct path of the clone
 2. Execute in Windows: `venv\Scripts\activate`
 3. Execute: `pytest --log-cli-level=INFO`
+
+## Build
+
+You can generate a standalone executable (`.exe` on Windows, or binary on Linux/Mac) using **PyInstaller**.
+
+### Windows
+
+1. Join to the correct path of the clone
+2. Activate your virtual environment: `venv\Scripts\activate`
+3. Install build dependencies: `pip install -r requirements.build.txt`
+4. Create the executable: `pyinstaller --onefile --windowed src/app.py` 
+
+Alternatively, you can run the helper script: `build.bat`
+
+### Linux / Mac
+
+1. Join to the correct path of the clone
+2. Activate your virtual environment: `source venv/bin/activate`
+3. Install build dependencies: `pip install -r requirements.build.txt`
+4. Create the executable: `pyinstaller --onefile --windowed src/app.py` 
+
+Alternatively, you can run the helper script: `./build.sh`
+
+## Known Issues
