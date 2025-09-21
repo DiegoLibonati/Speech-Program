@@ -35,7 +35,7 @@ pyttsx3==2.90
 #### Requirements.test.txt
 
 ```
-pytest
+pytest==8.4.2
 ```
 
 #### Requirements.build.txt
