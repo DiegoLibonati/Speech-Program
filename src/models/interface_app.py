@@ -1,6 +1,6 @@
 from tkinter import Button, Entry, Label, StringVar, Tk, ttk
 
-from src.models.Engine import Engine
+from src.models import Engine
 from src.utils.constants import PRIMARY, ROBOTO_12, ROBOTO_14, TEXT_YOUR_MESSAGE, WHITE
 
 

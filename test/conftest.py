@@ -2,8 +2,7 @@ from tkinter import Tk
 
 from pytest import fixture
 
-from src.models.Engine import Engine
-from src.models.InterfaceApp import InterfaceApp
+from src.models import Engine, InterfaceApp
 
 
 @fixture

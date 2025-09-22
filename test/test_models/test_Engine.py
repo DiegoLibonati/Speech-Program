@@ -1,7 +1,7 @@
 import pytest
 import pyttsx3
 
-from src.models.Engine import Engine
+from src.models import Engine
 from src.utils.constants import ERROR_NOT_TEXT_OR_LANGUAGE
 
 

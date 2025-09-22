@@ -1,4 +1,4 @@
-from .Engine import Engine
-from .InterfaceApp import InterfaceApp
+from .engine import Engine
+from .interface_app import InterfaceApp
 
 __all__ = ["Engine", "InterfaceApp"]
