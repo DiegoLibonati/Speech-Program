@@ -35,6 +35,7 @@ I made a program in Python, using Tkinter as user interface that allows to repro
 
 ```
 pyttsx3==2.90
+pre-commit==4.3.0
 ```
 
 #### Requirements.test.txt
