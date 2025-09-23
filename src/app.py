@@ -1,14 +1,14 @@
 from tkinter import Tk
 
-from src.models import Engine, InterfaceApp
+from src.core.speech_engine import SpeechEngine
+from src.ui.interface_app import InterfaceApp
 
 
 def main():
     root = Tk()
-    engine = Engine()
+    engine = SpeechEngine()
 
     app = InterfaceApp(root=root, engine=engine)
-
     root.mainloop()
 
     print(f"App: {app}")

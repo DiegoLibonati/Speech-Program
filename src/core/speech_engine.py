@@ -3,7 +3,7 @@ import pyttsx3
 from src.utils.constants import ERROR_NOT_TEXT_OR_LANGUAGE
 
 
-class Engine:
+class SpeechEngine:
     def __init__(self) -> None:
         self.engine = pyttsx3.init()
         self.voices: dict[str, str] = {}

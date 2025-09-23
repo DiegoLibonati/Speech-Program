@@ -2,16 +2,17 @@ from tkinter import Tk
 
 from pytest import fixture
 
-from src.models import Engine, InterfaceApp
+from src.core.speech_engine import SpeechEngine
+from src.ui.interface_app import InterfaceApp
 
 
 @fixture
-def engine() -> Engine:
-    return Engine()
+def engine() -> SpeechEngine:
+    return SpeechEngine()
 
 
 @fixture
-def interface_app(engine: Engine) -> InterfaceApp:
+def interface_app(engine: SpeechEngine) -> InterfaceApp:
     root = Tk()
 
     return InterfaceApp(root=root, engine=engine)

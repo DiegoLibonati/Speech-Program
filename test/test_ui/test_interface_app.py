@@ -2,7 +2,7 @@ import logging
 
 import pyttsx3
 
-from src.models import InterfaceApp
+from src.ui.interface_app import InterfaceApp
 from src.utils.constants import PRIMARY
 
 logging.basicConfig(

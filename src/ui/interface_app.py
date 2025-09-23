@@ -1,11 +1,11 @@
 from tkinter import Button, Entry, Label, StringVar, Tk, ttk
 
-from src.models import Engine
+from src.core.speech_engine import SpeechEngine
 from src.utils.constants import PRIMARY, ROBOTO_12, ROBOTO_14, TEXT_YOUR_MESSAGE, WHITE
 
 
 class InterfaceApp:
-    def __init__(self, root: Tk, engine: Engine, bg: str = PRIMARY) -> None:
+    def __init__(self, root: Tk, engine: SpeechEngine, bg: str = PRIMARY) -> None:
         self.root = root
         self.root.title = "Speech APP"
         self.root.geometry("600x100")
