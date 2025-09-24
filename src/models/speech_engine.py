@@ -1,6 +1,6 @@
 import pyttsx3
 
-from src.utils.constants import ERROR_NOT_TEXT_OR_LANGUAGE
+from src.utils.messages import MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE
 
 
 class SpeechEngine:
@@ -18,7 +18,7 @@ class SpeechEngine:
 
     def speech(self, text: str, lang_name: str) -> None:
         if not text or not lang_name:
-            raise ValueError(ERROR_NOT_TEXT_OR_LANGUAGE)
+            raise ValueError(MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE)
 
         self.engine.setProperty("voice", self.voices[lang_name])
         self.engine.say(text)

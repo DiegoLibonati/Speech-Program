@@ -1,7 +1,8 @@
 from tkinter import Button, Entry, Label, StringVar, Tk, ttk
 
 from src.models.speech_engine import SpeechEngine
-from src.utils.constants import PRIMARY, ROBOTO_12, ROBOTO_14, TEXT_YOUR_MESSAGE, WHITE
+from src.utils.messages import MESSAGE_TEXT_YOUR_MSG
+from src.utils.styles import PRIMARY, ROBOTO_12, ROBOTO_14, WHITE
 
 
 class InterfaceApp:
@@ -20,7 +21,11 @@ class InterfaceApp:
         self.entry_text_user = StringVar()
 
         text_label = Label(
-            self.root, font=(ROBOTO_14), text=TEXT_YOUR_MESSAGE, bg=PRIMARY, fg=WHITE
+            self.root,
+            font=(ROBOTO_14),
+            text=MESSAGE_TEXT_YOUR_MSG,
+            bg=PRIMARY,
+            fg=WHITE,
         )
         text_label.place(x=20, y=10)
 

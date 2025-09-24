@@ -1,0 +1,5 @@
+ROBOTO_12 = "Roboto 12"
+ROBOTO_14 = "Roboto 14"
+
+WHITE = "#FFFFFF"
+PRIMARY = "#5800FF"
