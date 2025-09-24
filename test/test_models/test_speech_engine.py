@@ -1,7 +1,7 @@
 import pytest
 import pyttsx3
 
-from src.core.speech_engine import SpeechEngine
+from src.models.speech_engine import SpeechEngine
 from src.utils.constants import ERROR_NOT_TEXT_OR_LANGUAGE
 
 

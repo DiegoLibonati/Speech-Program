@@ -1,6 +1,6 @@
 from tkinter import Tk
 
-from src.core.speech_engine import SpeechEngine
+from src.models.speech_engine import SpeechEngine
 from src.ui.interface_app import InterfaceApp
 
 

@@ -1,6 +1,6 @@
 from tkinter import Button, Entry, Label, StringVar, Tk, ttk
 
-from src.core.speech_engine import SpeechEngine
+from src.models.speech_engine import SpeechEngine
 from src.utils.constants import PRIMARY, ROBOTO_12, ROBOTO_14, TEXT_YOUR_MESSAGE, WHITE
 
 
