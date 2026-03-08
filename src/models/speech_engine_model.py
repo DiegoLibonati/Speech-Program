@@ -1,9 +1,10 @@
 import pyttsx3
+from pyttsx3.voice import Voice
 
-from src.utils.messages import MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE
+from src.constants.messages import MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE
 
 
-class SpeechEngine:
+class SpeechEngineModel:
     def __init__(self) -> None:
         self.engine = pyttsx3.init()
         self.voices: dict[str, str] = {}
@@ -11,7 +12,7 @@ class SpeechEngine:
         self.__get_voices()
 
     def __get_voices(self) -> None:
-        voices: list[pyttsx3.voice.Voice] = self.engine.getProperty("voices")
+        voices: list[Voice] = self.engine.getProperty("voices")
 
         for voice in voices:
             self.voices[voice.name] = voice.id

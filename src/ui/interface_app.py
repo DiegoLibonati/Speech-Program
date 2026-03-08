@@ -1,56 +1,35 @@
-from tkinter import Button, Entry, Label, StringVar, Tk, ttk
+from tkinter import Tk
 
-from src.models.speech_engine import SpeechEngine
-from src.utils.messages import MESSAGE_TEXT_YOUR_MSG
-from src.utils.styles import PRIMARY, ROBOTO_12, ROBOTO_14, WHITE
+from src.configs.default_config import DefaultConfig
+from src.models.speech_engine_model import SpeechEngineModel
+from src.ui.styles import Styles
+from src.ui.views.main_view import MainView
 
 
 class InterfaceApp:
-    def __init__(self, root: Tk, engine: SpeechEngine, bg: str = PRIMARY) -> None:
-        self.root = root
-        self.root.title = "Speech APP"
-        self.root.geometry("600x100")
-        self.root.resizable(False, False)
-        self.root.config(bg=bg)
+    def __init__(self, root: Tk, engine: SpeechEngineModel, config: DefaultConfig, styles: Styles = Styles()) -> None:
+        self._styles = styles
+        self._config = config
+        self._root = root
+        self._root.title("Speech APP")
+        self._root.geometry("600x100")
+        self._root.resizable(False, False)
+        self._root.config(background=self._styles.PRIMARY_COLOR)
 
         self.engine = engine
 
-        self.__create_widgets()
-
-    def __create_widgets(self) -> None:
-        self.entry_text_user = StringVar()
-
-        text_label = Label(
-            self.root,
-            font=(ROBOTO_14),
-            text=MESSAGE_TEXT_YOUR_MSG,
-            bg=PRIMARY,
-            fg=WHITE,
+        self._main_view = MainView(
+            root=self._root,
+            styles=self._styles,
+            voices=list(self.engine.voices.keys()),
+            on_listen=self._perform_speech,
         )
-        text_label.place(x=20, y=10)
-
-        text_entry = Entry(
-            self.root, font=(ROBOTO_14), textvariable=self.entry_text_user
-        )
-        text_entry.place(x=180, y=10)
-
-        action_button = Button(
-            self.root,
-            font=(ROBOTO_12),
-            text="Listen",
-            command=lambda: self._perform_speech(),
-            bg=PRIMARY,
-            fg=WHITE,
-        )
-        action_button.place(x=450, y=5)
-
-        self._combo = ttk.Combobox(
-            state="readonly", values=list(self.engine.voices.keys()), width=40
-        )
-        self._combo.place(x=20, y=50)
+        self._main_view.grid(row=0, column=0, sticky="nsew")
+        self._root.columnconfigure(0, weight=1)
+        self._root.rowconfigure(0, weight=1)
 
     def _perform_speech(self) -> None:
-        text = self.entry_text_user.get()
-        lang_name = self._combo.get()
+        text = self._main_view.get_text()
+        lang_name = self._main_view.get_lang()
 
         self.engine.speech(text=text, lang_name=lang_name)
