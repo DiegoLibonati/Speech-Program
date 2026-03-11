@@ -44,12 +44,7 @@ class TestSpeechInputInit:
             mock_button.return_value.grid = MagicMock()
             instance: SpeechInput = SpeechInput.__new__(SpeechInput)
             instance._styles = mock_styles
-            SpeechInput.__init__(
-                instance,
-                parent=MagicMock(),
-                styles=mock_styles,
-                on_listen=mock_on_listen,
-            )
+            SpeechInput.__init__(instance, parent=MagicMock(), styles=mock_styles, on_listen=mock_on_listen)
 
         _, kwargs = mock_button.call_args
         assert kwargs.get("command") == mock_on_listen
@@ -68,15 +63,29 @@ class TestSpeechInputInit:
             mock_button.return_value.grid = MagicMock()
             instance: SpeechInput = SpeechInput.__new__(SpeechInput)
             instance._styles = mock_styles
-            SpeechInput.__init__(
-                instance,
-                parent=MagicMock(),
-                styles=mock_styles,
-                on_listen=mock_on_listen,
-            )
+            SpeechInput.__init__(instance, parent=MagicMock(), styles=mock_styles, on_listen=mock_on_listen)
 
         _, kwargs = mock_button.call_args
         assert kwargs.get("text") == "Listen"
+
+    def test_label_text_is_your_message(self, mock_styles: MagicMock, mock_on_listen: MagicMock) -> None:
+        with (
+            patch("src.ui.components.speech_input.Frame.__init__", return_value=None),
+            patch("src.ui.components.speech_input.Label") as mock_label,
+            patch("src.ui.components.speech_input.Entry") as mock_entry,
+            patch("src.ui.components.speech_input.Button") as mock_button,
+            patch("src.ui.components.speech_input.StringVar"),
+            patch.object(SpeechInput, "columnconfigure"),
+        ):
+            mock_label.return_value.grid = MagicMock()
+            mock_entry.return_value.grid = MagicMock()
+            mock_button.return_value.grid = MagicMock()
+            instance: SpeechInput = SpeechInput.__new__(SpeechInput)
+            instance._styles = mock_styles
+            SpeechInput.__init__(instance, parent=MagicMock(), styles=mock_styles, on_listen=mock_on_listen)
+
+        _, kwargs = mock_label.call_args
+        assert kwargs.get("text") == "Your message:"
 
     def test_entry_created_with_variable(self, mock_styles: MagicMock, mock_on_listen: MagicMock) -> None:
         with (
@@ -94,12 +103,7 @@ class TestSpeechInputInit:
             mock_string_var.return_value = mock_var
             instance: SpeechInput = SpeechInput.__new__(SpeechInput)
             instance._styles = mock_styles
-            SpeechInput.__init__(
-                instance,
-                parent=MagicMock(),
-                styles=mock_styles,
-                on_listen=mock_on_listen,
-            )
+            SpeechInput.__init__(instance, parent=MagicMock(), styles=mock_styles, on_listen=mock_on_listen)
 
         _, kwargs = mock_entry.call_args
         assert kwargs.get("textvariable") == mock_var
@@ -118,12 +122,7 @@ class TestSpeechInputInit:
             mock_button.return_value.grid = MagicMock()
             instance: SpeechInput = SpeechInput.__new__(SpeechInput)
             instance._styles = mock_styles
-            SpeechInput.__init__(
-                instance,
-                parent=MagicMock(),
-                styles=mock_styles,
-                on_listen=mock_on_listen,
-            )
+            SpeechInput.__init__(instance, parent=MagicMock(), styles=mock_styles, on_listen=mock_on_listen)
 
         assert mock_columnconfigure.call_count == 3
 

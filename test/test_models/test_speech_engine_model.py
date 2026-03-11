@@ -2,7 +2,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from src.constants.messages import MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE
+from src.constants.messages import MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE
 from src.models.speech_engine_model import SpeechEngineModel
 
 
@@ -45,17 +45,35 @@ class TestSpeechEngineModelInit:
 
 
 class TestSpeechEngineModelSpeech:
-    def test_raises_value_error_when_text_is_empty(self, speech_engine_model: SpeechEngineModel) -> None:
-        with pytest.raises(ValueError, match=MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE):
+    def test_validation_dialog_called_when_text_is_empty(self, speech_engine_model: SpeechEngineModel) -> None:
+        with patch("src.models.speech_engine_model.ValidationDialogError") as mock_dialog_class:
+            mock_dialog_class.return_value = MagicMock()
             speech_engine_model.speech(text="", lang_name="English")
 
-    def test_raises_value_error_when_lang_name_is_empty(self, speech_engine_model: SpeechEngineModel) -> None:
-        with pytest.raises(ValueError, match=MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE):
+        mock_dialog_class.assert_called_once_with(message=MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE)
+        mock_dialog_class.return_value.dialog.assert_called_once()
+
+    def test_validation_dialog_called_when_lang_name_is_empty(self, speech_engine_model: SpeechEngineModel) -> None:
+        with patch("src.models.speech_engine_model.ValidationDialogError") as mock_dialog_class:
+            mock_dialog_class.return_value = MagicMock()
             speech_engine_model.speech(text="Hello", lang_name="")
 
-    def test_raises_value_error_when_both_are_empty(self, speech_engine_model: SpeechEngineModel) -> None:
-        with pytest.raises(ValueError, match=MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE):
-            speech_engine_model.speech(text="", lang_name="")
+        mock_dialog_class.assert_called_once_with(message=MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE)
+        mock_dialog_class.return_value.dialog.assert_called_once()
+
+    def test_set_property_not_called_when_lang_name_is_empty(self, speech_engine_model: SpeechEngineModel) -> None:
+        with patch("src.models.speech_engine_model.ValidationDialogError") as mock_dialog_class:
+            mock_dialog_class.return_value = MagicMock()
+            speech_engine_model.speech(text="Hello", lang_name="")
+
+        speech_engine_model.engine.setProperty.assert_not_called()
+
+    def test_set_property_not_called_when_text_is_empty(self, speech_engine_model: SpeechEngineModel) -> None:
+        with patch("src.models.speech_engine_model.ValidationDialogError") as mock_dialog_class:
+            mock_dialog_class.return_value = MagicMock()
+            speech_engine_model.speech(text="", lang_name="English")
+
+        speech_engine_model.engine.setProperty.assert_not_called()
 
     def test_set_property_called_with_correct_voice_id(self, speech_engine_model: SpeechEngineModel) -> None:
         speech_engine_model.speech(text="Hello", lang_name="English")

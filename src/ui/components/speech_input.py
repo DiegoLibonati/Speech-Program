@@ -1,6 +1,5 @@
 from tkinter import Button, Entry, Frame, Label, Misc, StringVar
 
-from src.constants.messages import MESSAGE_TEXT_YOUR_MSG
 from src.ui.styles import Styles
 
 
@@ -24,7 +23,7 @@ class SpeechInput(Frame):
         Label(
             self,
             font=self._styles.FONT_ROBOTO_14,
-            text=MESSAGE_TEXT_YOUR_MSG,
+            text="Your message:",
             bg=self._styles.PRIMARY_COLOR,
             fg=self._styles.WHITE_COLOR,
         ).grid(row=0, column=0, padx=(0, 10), sticky="w")

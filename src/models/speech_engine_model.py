@@ -1,7 +1,8 @@
 import pyttsx3
 from pyttsx3.voice import Voice
 
-from src.constants.messages import MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE
+from src.constants.messages import MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE
+from src.utils.dialogs import ValidationDialogError
 
 
 class SpeechEngineModel:
@@ -19,7 +20,8 @@ class SpeechEngineModel:
 
     def speech(self, text: str, lang_name: str) -> None:
         if not text or not lang_name:
-            raise ValueError(MESSAGE_ERROR_NOT_TEXT_OR_LANGUAGE)
+            ValidationDialogError(message=MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE).dialog()
+            return
 
         self.engine.setProperty("voice", self.voices[lang_name])
         self.engine.say(text)
