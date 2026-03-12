@@ -18,11 +18,12 @@ class SpeechEngineModel:
         for voice in voices:
             self.voices[voice.name] = voice.id
 
-    def speech(self, text: str, lang_name: str) -> None:
+    def speech(self, text: str, lang_name: str) -> bool:
         if not text or not lang_name:
             ValidationDialogError(message=MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE).dialog()
-            return
+            return False
 
         self.engine.setProperty("voice", self.voices[lang_name])
         self.engine.say(text)
         self.engine.runAndWait()
+        return True
