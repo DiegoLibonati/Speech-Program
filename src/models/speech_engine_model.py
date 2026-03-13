@@ -20,8 +20,7 @@ class SpeechEngineModel:
 
     def speech(self, text: str, lang_name: str) -> bool:
         if not text or not lang_name:
-            ValidationDialogError(message=MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE).dialog()
-            return False
+            raise ValidationDialogError(message=MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE)
 
         self.engine.setProperty("voice", self.voices[lang_name])
         self.engine.say(text)
