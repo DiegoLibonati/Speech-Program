@@ -1,7 +1,7 @@
 [project]
-name = "text-to-speech"
+name = "oratio"
 version = "1.0.0"
-description = "I made a program in Python, using Tkinter as user interface that allows to reproduce a text entered by the user in voice. The user will enter by the input of this program any message, then he will have to choose a voice that reproduces what he wrote, by default it only brings 2 voices, one in Spanish and another in English. Once this is done the user will touch the Listen button to play the message and listen to it."
+description = "**Oratio** is a desktop application built in Python that converts any written text into spoken audio using the system's text-to-speech engine. It provides a clean and minimal graphical interface powered by Tkinter, making it straightforward to use without any technical knowledge."
 requires-python = ">=3.11"
 
 [tool.pytest.ini_options]

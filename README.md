@@ -1,4 +1,4 @@
-# Text To Speech
+# Oratio
 
 ## Educational Purpose
 
@@ -24,7 +24,15 @@ The main goal is to explore and demonstrate best practices, patterns, and techno
 
 ## Description
 
-I made a program in Python, using Tkinter as user interface that allows to reproduce a text entered by the user in voice. The user will enter by the input of this program any message, then he will have to choose a voice that reproduces what he wrote, by default it only brings 2 voices, one in Spanish and another in English. Once this is done the user will touch the Listen button to play the message and listen to it.
+**Oratio** is a desktop application built in Python that converts any written text into spoken audio using the system's text-to-speech engine. It provides a clean and minimal graphical interface powered by Tkinter, making it straightforward to use without any technical knowledge.
+
+The user opens the application and is presented with a simple form: a text input field where any message can be typed, and a dropdown list that displays all the available voices installed on the operating system. By default, at least two voices are available — one in Spanish and one in English — though the list will automatically include any additional voices installed on the system, allowing for a broader range of languages and accents. Once the user has typed their message and selected a preferred voice, they click the **Listen** button to play the speech back immediately through the system's audio output.
+
+Under the hood, the application uses `pyttsx3`, a cross-platform text-to-speech library that interfaces directly with native speech engines: SAPI5 on Windows, NSSpeechSynthesizer on macOS, and espeak on Linux. This means no internet connection is required — everything runs fully offline on the local machine.
+
+The application also includes robust error handling: if the text field is left empty or an invalid voice is selected, a descriptive dialog is shown to the user instead of crashing. All configuration is managed through environment variables, and the codebase is organized following a clear MVC-inspired architecture with a config system, a model layer, and a UI layer — making it easy to extend or modify.
+
+The app can be run directly with Python or packaged into a standalone executable using PyInstaller, making distribution simple without requiring the end user to have Python installed.
 
 ## Technologies used
 
@@ -65,7 +73,7 @@ pyinstaller==6.16.0
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/text-to-speech`](https://www.diegolibonati.com.ar/#/project/text-to-speech)
+[`https://www.diegolibonati.com.ar/#/project/oratio`](https://www.diegolibonati.com.ar/#/project/oratio)
 
 ## Testing
 

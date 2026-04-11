@@ -39,7 +39,7 @@ class TestInterfaceApp:
         assert interface_app._main_view is not None
 
     def test_window_title_is_speech_app(self, root: tk.Tk, interface_app: InterfaceApp) -> None:
-        assert root.title() == "Speech APP"
+        assert root.title() == "Oratio"
 
     def test_config_attribute_is_set(self, interface_app: InterfaceApp, config: DefaultConfig) -> None:
         assert interface_app._config is config
