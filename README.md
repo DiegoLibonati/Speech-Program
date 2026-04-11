@@ -1,4 +1,4 @@
-# Speech Program
+# Text To Speech
 
 ## Educational Purpose
 
@@ -65,11 +65,7 @@ pyinstaller==6.16.0
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/Speech-Program`](https://www.diegolibonati.com.ar/#/project/Speech-Program)
-
-## Video
-
-https://user-images.githubusercontent.com/99032604/198900310-d3260a5c-7158-4a7f-abc5-b64f2e6d7ac0.mp4
+[`https://www.diegolibonati.com.ar/#/project/text-to-speech`](https://www.diegolibonati.com.ar/#/project/text-to-speech)
 
 ## Testing
 
