@@ -1,7 +1,7 @@
 [project]
 name = "oratio"
 version = "1.0.0"
-description = "Oratio is a desktop application built in Python that converts any written text into spoken audio using the system's text-to-speech engine. It provides a clean and minimal graphical interface powered by Tkinter, making it straightforward to use without any technical knowledge."
+description = "Oratio is a desktop application built in Python that converts any written text into spoken audio using the system's text-to-speech engine."
 requires-python = ">=3.11"
 
 [tool.pytest.ini_options]
