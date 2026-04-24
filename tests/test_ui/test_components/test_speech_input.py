@@ -8,11 +8,6 @@ from src.ui.styles import Styles
 
 
 @pytest.fixture
-def styles() -> Styles:
-    return Styles()
-
-
-@pytest.fixture
 def on_listen() -> MagicMock:
     return MagicMock()
 

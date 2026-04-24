@@ -22,11 +22,6 @@ def config() -> DefaultConfig:
 
 
 @pytest.fixture
-def styles() -> Styles:
-    return Styles()
-
-
-@pytest.fixture
 def interface_app(root: tk.Tk, mock_engine: MagicMock, config: DefaultConfig, styles: Styles) -> InterfaceApp:
     return InterfaceApp(root=root, engine=mock_engine, config=config, styles=styles)
 

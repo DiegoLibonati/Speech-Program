@@ -8,11 +8,6 @@ from src.ui.views.main_view import MainView
 
 
 @pytest.fixture
-def styles() -> Styles:
-    return Styles()
-
-
-@pytest.fixture
 def voices() -> list[str]:
     return ["Voice English", "Voice Spanish"]
 
