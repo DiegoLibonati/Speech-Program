@@ -1,3 +1,5 @@
+import pytest
+
 from src.constants.messages import (
     MESSAGE_ERROR_APP,
     MESSAGE_NOT_FOUND_DIALOG_TYPE,
@@ -6,22 +8,16 @@ from src.constants.messages import (
 
 
 class TestMessages:
-    def test_message_error_app_is_non_empty_string(self) -> None:
-        assert isinstance(MESSAGE_ERROR_APP, str)
-        assert len(MESSAGE_ERROR_APP) > 0
+    @pytest.mark.unit
+    def test_error_app_message(self) -> None:
+        assert MESSAGE_ERROR_APP == "Internal error. Contact a developer."
 
-    def test_message_not_valid_text_or_language_is_non_empty_string(self) -> None:
-        assert isinstance(MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE, str)
-        assert len(MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE) > 0
+    @pytest.mark.unit
+    def test_not_valid_text_or_language_message(self) -> None:
+        assert MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE == (
+            "You must enter a text and a language to be able to reproduce."
+        )
 
-    def test_message_not_found_dialog_type_is_non_empty_string(self) -> None:
-        assert isinstance(MESSAGE_NOT_FOUND_DIALOG_TYPE, str)
-        assert len(MESSAGE_NOT_FOUND_DIALOG_TYPE) > 0
-
-    def test_all_messages_are_distinct(self) -> None:
-        messages: list[str] = [
-            MESSAGE_ERROR_APP,
-            MESSAGE_NOT_VALID_TEXT_OR_LANGUAGE,
-            MESSAGE_NOT_FOUND_DIALOG_TYPE,
-        ]
-        assert len(messages) == len(set(messages))
+    @pytest.mark.unit
+    def test_not_found_dialog_type_message(self) -> None:
+        assert MESSAGE_NOT_FOUND_DIALOG_TYPE == "The type of dialog to display is not found."

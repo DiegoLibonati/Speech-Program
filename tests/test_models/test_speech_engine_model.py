@@ -6,7 +6,7 @@ from src.models.speech_engine_model import SpeechEngineModel
 from src.utils.dialogs import ValidationDialogError
 
 
-def _make_mock_voice(name: str, voice_id: str) -> MagicMock:
+def _make_voice(name: str, voice_id: str) -> MagicMock:
     voice: MagicMock = MagicMock()
     voice.name = name
     voice.id = voice_id
@@ -14,56 +14,80 @@ def _make_mock_voice(name: str, voice_id: str) -> MagicMock:
 
 
 @pytest.fixture
-def mock_pyttsx3_engine() -> MagicMock:
+def mock_engine() -> MagicMock:
     engine: MagicMock = MagicMock()
     engine.getProperty.return_value = [
-        _make_mock_voice("Voice English", "voice_en"),
-        _make_mock_voice("Voice Spanish", "voice_es"),
+        _make_voice("Microsoft David", "voice-id-david"),
+        _make_voice("Microsoft Zira", "voice-id-zira"),
     ]
     return engine
 
 
 @pytest.fixture
-def speech_engine(mock_pyttsx3_engine: MagicMock) -> SpeechEngineModel:
-    with patch("pyttsx3.init", return_value=mock_pyttsx3_engine):
-        return SpeechEngineModel()
+def speech_model(mock_engine: MagicMock) -> SpeechEngineModel:
+    with patch("src.models.speech_engine_model.pyttsx3.init", return_value=mock_engine):
+        model: SpeechEngineModel = SpeechEngineModel()
+    return model
 
 
 class TestSpeechEngineModel:
-    def test_voices_is_populated_on_init(self, speech_engine: SpeechEngineModel) -> None:
-        assert len(speech_engine.voices) == 2
+    @pytest.mark.unit
+    def test_voices_populated_on_init(self, speech_model: SpeechEngineModel) -> None:
+        assert "Microsoft David" in speech_model.voices
+        assert "Microsoft Zira" in speech_model.voices
 
-    def test_voices_maps_name_to_id(self, speech_engine: SpeechEngineModel) -> None:
-        assert speech_engine.voices["Voice English"] == "voice_en"
-        assert speech_engine.voices["Voice Spanish"] == "voice_es"
+    @pytest.mark.unit
+    def test_voices_maps_name_to_id(self, speech_model: SpeechEngineModel) -> None:
+        assert speech_model.voices["Microsoft David"] == "voice-id-david"
+        assert speech_model.voices["Microsoft Zira"] == "voice-id-zira"
 
-    def test_voices_is_dict(self, speech_engine: SpeechEngineModel) -> None:
-        assert isinstance(speech_engine.voices, dict)
-
-    def test_speech_raises_when_text_is_empty(self, speech_engine: SpeechEngineModel) -> None:
+    @pytest.mark.unit
+    def test_speech_raises_validation_error_when_text_is_empty(
+        self, speech_model: SpeechEngineModel
+    ) -> None:
         with pytest.raises(ValidationDialogError):
-            speech_engine.speech(text="", lang_name="Voice English")
+            speech_model.speech(text="", lang_name="Microsoft David")
 
-    def test_speech_raises_when_lang_name_is_empty(self, speech_engine: SpeechEngineModel) -> None:
+    @pytest.mark.unit
+    def test_speech_raises_validation_error_when_lang_is_empty(
+        self, speech_model: SpeechEngineModel
+    ) -> None:
         with pytest.raises(ValidationDialogError):
-            speech_engine.speech(text="Hello", lang_name="")
+            speech_model.speech(text="Hello", lang_name="")
 
-    def test_speech_raises_when_both_inputs_are_empty(self, speech_engine: SpeechEngineModel) -> None:
+    @pytest.mark.unit
+    def test_speech_raises_validation_error_when_both_empty(
+        self, speech_model: SpeechEngineModel
+    ) -> None:
         with pytest.raises(ValidationDialogError):
-            speech_engine.speech(text="", lang_name="")
+            speech_model.speech(text="", lang_name="")
 
-    def test_speech_sets_voice_property(self, speech_engine: SpeechEngineModel, mock_pyttsx3_engine: MagicMock) -> None:
-        speech_engine.speech(text="Hello", lang_name="Voice English")
-        mock_pyttsx3_engine.setProperty.assert_called_once_with("voice", "voice_en")
+    @pytest.mark.unit
+    def test_speech_sets_voice_property(
+        self, speech_model: SpeechEngineModel, mock_engine: MagicMock
+    ) -> None:
+        speech_model.speech(text="Hello", lang_name="Microsoft David")
 
-    def test_speech_calls_say(self, speech_engine: SpeechEngineModel, mock_pyttsx3_engine: MagicMock) -> None:
-        speech_engine.speech(text="Hello world", lang_name="Voice English")
-        mock_pyttsx3_engine.say.assert_called_once_with("Hello world")
+        mock_engine.setProperty.assert_called_once_with("voice", "voice-id-david")
 
-    def test_speech_calls_run_and_wait(self, speech_engine: SpeechEngineModel, mock_pyttsx3_engine: MagicMock) -> None:
-        speech_engine.speech(text="Hello", lang_name="Voice English")
-        mock_pyttsx3_engine.runAndWait.assert_called_once()
+    @pytest.mark.unit
+    def test_speech_calls_say_with_text(
+        self, speech_model: SpeechEngineModel, mock_engine: MagicMock
+    ) -> None:
+        speech_model.speech(text="Hello world", lang_name="Microsoft David")
 
-    def test_speech_returns_true(self, speech_engine: SpeechEngineModel) -> None:
-        result: bool = speech_engine.speech(text="Hello", lang_name="Voice English")
+        mock_engine.say.assert_called_once_with("Hello world")
+
+    @pytest.mark.unit
+    def test_speech_calls_run_and_wait(
+        self, speech_model: SpeechEngineModel, mock_engine: MagicMock
+    ) -> None:
+        speech_model.speech(text="Hello", lang_name="Microsoft David")
+
+        mock_engine.runAndWait.assert_called_once()
+
+    @pytest.mark.unit
+    def test_speech_returns_true_on_success(self, speech_model: SpeechEngineModel) -> None:
+        result: bool = speech_model.speech(text="Hello", lang_name="Microsoft David")
+
         assert result is True

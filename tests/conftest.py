@@ -1,18 +1,12 @@
 import tkinter as tk
+from collections.abc import Iterator
 
 import pytest
 
-from src.ui.styles import Styles
-
 
 @pytest.fixture(scope="session")
-def root() -> tk.Tk:
+def root() -> Iterator[tk.Tk]:
     instance: tk.Tk = tk.Tk()
     instance.withdraw()
     yield instance
     instance.destroy()
-
-
-@pytest.fixture
-def styles() -> Styles:
-    return Styles()

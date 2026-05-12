@@ -1,32 +1,39 @@
 import logging
 
+import pytest
+
 from src.configs.logger_config import setup_logger
 
 
 class TestSetupLogger:
-    def test_returns_logger_instance(self) -> None:
-        logger: logging.Logger = setup_logger()
-        assert isinstance(logger, logging.Logger)
+    @pytest.mark.unit
+    def test_returns_logger_with_given_name(self) -> None:
+        logger: logging.Logger = setup_logger("test-logger-name-check")
 
+        assert logger.name == "test-logger-name-check"
+
+    @pytest.mark.unit
+    def test_logger_has_at_least_one_handler(self) -> None:
+        logger: logging.Logger = setup_logger("test-logger-handler-check")
+
+        assert len(logger.handlers) >= 1
+
+    @pytest.mark.unit
+    def test_calling_twice_does_not_duplicate_handlers(self) -> None:
+        name: str = "test-logger-no-dup"
+        setup_logger(name)
+        logger: logging.Logger = setup_logger(name)
+
+        assert len(logger.handlers) == 1
+
+    @pytest.mark.unit
     def test_default_name_is_tkinter_app(self) -> None:
         logger: logging.Logger = setup_logger()
+
         assert logger.name == "tkinter-app"
 
-    def test_custom_name_is_used(self) -> None:
-        logger: logging.Logger = setup_logger(name="custom-logger")
-        assert logger.name == "custom-logger"
-
-    def test_logger_has_handler(self) -> None:
-        logger: logging.Logger = setup_logger()
-        assert len(logger.handlers) > 0
-
+    @pytest.mark.unit
     def test_logger_level_is_debug(self) -> None:
-        logger: logging.Logger = setup_logger()
-        assert logger.level == logging.DEBUG
+        logger: logging.Logger = setup_logger("test-logger-level-check")
 
-    def test_calling_twice_does_not_duplicate_handlers(self) -> None:
-        logger: logging.Logger = setup_logger(name="no-duplicate-test")
-        count_first: int = len(logger.handlers)
-        setup_logger(name="no-duplicate-test")
-        count_second: int = len(logger.handlers)
-        assert count_first == count_second
+        assert logger.level == logging.DEBUG

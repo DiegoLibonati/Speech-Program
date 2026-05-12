@@ -1,4 +1,5 @@
-from tkinter import Frame, Tk, ttk
+from collections.abc import Callable
+from tkinter import Frame, Misc, ttk
 
 from pyttsx3.voice import Voice
 
@@ -9,10 +10,10 @@ from src.ui.styles import Styles
 class MainView(Frame):
     def __init__(
         self,
-        root: Tk,
+        root: Misc,
         styles: Styles,
         voices: list[Voice],
-        on_listen: callable,
+        on_listen: Callable[[], None],
     ) -> None:
         super().__init__(root, bg=styles.PRIMARY_COLOR)
         self._styles = styles

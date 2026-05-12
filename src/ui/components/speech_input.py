@@ -1,3 +1,4 @@
+from collections.abc import Callable
 from tkinter import Button, Entry, Frame, Label, Misc, StringVar
 
 from src.ui.styles import Styles
@@ -8,7 +9,7 @@ class SpeechInput(Frame):
         self,
         parent: Misc,
         styles: Styles,
-        on_listen: callable,
+        on_listen: Callable[[], None],
     ) -> None:
         super().__init__(parent, bg=styles.PRIMARY_COLOR)
         self._styles = styles
