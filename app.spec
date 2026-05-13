@@ -3,9 +3,7 @@
 # WARNING: the `.env` file bundled below is copied verbatim into the final
 # executable. The development `.env` (with ENVIRONMENT=development and any
 # local credentials) MUST NOT be shipped to end users. Before building for
-# production, replace the repo-level `.env` with a dedicated production file
-# (e.g. copy `build/.env.prod` over `.env`) or change the `datas` entry to
-# point at a separate production env file. Never commit production secrets.
+# production, set production values directly in `.env`. Never commit production secrets.
 
 a = Analysis(
     ['app.py'],

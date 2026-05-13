@@ -134,9 +134,8 @@ Alternatively, you can run the helper script: `./build.sh`
 
 The `app.spec` file bundles the repository-level `.env` directly into the final executable. This means whatever values are in `.env` at build time will be shipped to end users. Before building a production artifact:
 
-1. Never place real production secrets in the development `.env`.
-2. Replace the repo-level `.env` with a dedicated production file (for example, copy a separate `build/.env.prod` over `.env`) immediately before running `pyinstaller app.spec`, then restore the development `.env` afterwards.
-3. Treat any binary built with a development `.env` as non-distributable.
+1. Set production values directly in `.env` (e.g. `ENVIRONMENT=production`).
+2. Treat any binary built with a development `.env` as non-distributable.
 
 ## Known Issues
 
