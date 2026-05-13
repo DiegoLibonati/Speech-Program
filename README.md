@@ -31,7 +31,7 @@ Dependencies are declared in `pyproject.toml` and grouped by purpose. The `requi
 
 ```
 pyttsx3==2.90
-python-dotenv==1.0.1
+python-dotenv==1.2.2
 ```
 
 #### Dev (`[project.optional-dependencies]` dev)
@@ -45,7 +45,7 @@ ruff==0.11.12
 #### Test (`[project.optional-dependencies]` test)
 
 ```
-pytest==8.4.2
+pytest==9.0.3
 pytest-env==1.1.5
 pytest-cov==4.1.0
 pytest-timeout==2.3.1
